@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="ie=edge"
+  >
+  <link
+    rel="stylesheet"
+    href=""
+  >
+  <title>Document</title>
+  <style>
+    #main {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main"></div>
+  <script src="./echarts.js">
+
+  </script>
+  <script>
+    let data = [];
+    for (var i = 0; i < 20; i++) {
+      var subArray = [];
+      for (var j = 0; j < 50000; j++) {
+        subArray.push([Math.floor(Math.random() * 100000) + 1, Math.floor(Math.random() * 100000) + 1]);
+      }
+      data.push(subArray);
+    }
+
+    console.log(data)
+
+    var startTime = new Date().getTime();
+    var dom = document.getElementById("main");
+    var myChart = echarts.init(dom);
+    var option = {
+      // 将图表布局设置为5行4列，总共20个网格
+      grid: [
+        { top: '10%', left: '10%', right: '5%', bottom: '10%' },
+        { top: '10%', left: '50%', right: '5%', bottom: '10%' },
+        { top: '10%', left: '90%', right: '5%', bottom: '10%' },
+        { top: '30%', left: '10%', right: '5%', bottom: '30%' },
+        { top: '30%', left: '50%', right: '5%', bottom: '30%' },
+        { top: '30%', left: '90%', right: '5%', bottom: '30%' },
+        { top: '50%', left: '10%', right: '5%', bottom: '50%' },
+        { top: '50%', left: '50%', right: '5%', bottom: '50%' },
+        { top: '50%', left: '90%', right: '5%', bottom: '50%' },
+        { top: '70%', left: '10%', right: '5%', bottom: '70%' },
+        { top: '70%', left: '50%', right: '5%', bottom: '70%' },
+        { top: '70%', left: '90%', right: '5%', bottom: '70%' },
+        { top: '90%', left: '10%', right: '5%', bottom: '90%' },
+        { top: '90%', left: '50%', right: '5%', bottom: '90%' },
+        { top: '90%', left: '90%', right: '5%', bottom: '90%' },
+        { top: '10%', left: '20%', right: '50%', bottom: '30%' },
+        { top: '45%', left: '20%', right: '50%', bottom: '65%' },
+        { top: '70%', left: '20%', right: '50%', bottom: '90%' },
+        { top: '10%', left: '70%', right: '10%', bottom: '90%' },
+        { top: '10%', left: '20%', right: '70%', bottom: '10%' }
+      ],
+      xAxis: [
+
+      ],
+      yAxis: [],
+      series: []
+    };
+
+    for (var i = 0; i < 20; i++) {
+      option.xAxis.push({
+        gridIndex: i,
+        type: 'value',
+      });
+      option.yAxis.push({
+        gridIndex: i,
+        type: 'value',
+      });
+      option.series.push({
+        name: 'chart' + i.toString(),
+        type: 'bar',
+        xAxisIndex: i,
+        yAxisIndex: i,
+        data: data[i]
+      });
+    }
+    // 使用刚指定的配置项和数据显示图表。
+    console.log(option)
+    myChart.setOption(option);
+    var endTime = new Date().getTime();
+    console.log('渲染时间：' + (endTime - startTime) + 'ms');
+  </script>
+</body>
+
+</html>
