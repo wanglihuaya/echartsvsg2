@@ -30,263 +30,38 @@
   </script>
   <!-- <script src="https://unpkg.com/@antv/g2@next/dist/g2.min.js"></script> -->
   <script>
-    // 准备数据
-    const data = [
-      { genre: 'Sports', sold: 275 },
-      { genre: 'Strategy', sold: 115 },
-      { genre: 'Action', sold: 120 },
-      { genre: 'Shooter', sold: 350 },
-      { genre: 'Other', sold: 150 },
-    ];
-
-    // 初始化图表实例
-    const chart = new G2.Chart({
-      container: 'container',
-      theme: 'classic',
-    });
-
-    // 声明可视化
-    chart
-      .interval() // 创建一个 Interval 标记
-      .data(data) // 绑定数据
-      .encode('x', 'genre') // 编码 x 通道
-      .encode('y', 'sold'); // 编码 y 通道
-
-    // 渲染可视化
-    chart.render();
-
-
-
-
-
-    option = {
-      "grid": [
-        {
-          "top": "10%",
-          "left": "10%",
-          "right": "5%",
-          "bottom": "10%"
-        },
-        {
-          "top": "10%",
-          "left": "50%",
-          "right": "5%",
-          "bottom": "10%"
-        },
-        {
-          "top": "10%",
-          "left": "90%",
-          "right": "5%",
-          "bottom": "10%"
-        },
-        {
-          "top": "30%",
-          "left": "10%",
-          "right": "5%",
-          "bottom": "30%"
-        },
-        {
-          "top": "30%",
-          "left": "50%",
-          "right": "5%",
-          "bottom": "30%"
-        },
-        {
-          "top": "30%",
-          "left": "90%",
-          "right": "5%",
-          "bottom": "30%"
-        },
-        {
-          "top": "50%",
-          "left": "10%",
-          "right": "5%",
-          "bottom": "50%"
-        },
-        {
-          "top": "50%",
-          "left": "50%",
-          "right": "5%",
-          "bottom": "50%"
-        },
-        {
-          "top": "50%",
-          "left": "90%",
-          "right": "5%",
-          "bottom": "50%"
-        },
-        {
-          "top": "70%",
-          "left": "10%",
-          "right": "5%",
-          "bottom": "70%"
-        },
-        {
-          "top": "70%",
-          "left": "50%",
-          "right": "5%",
-          "bottom": "70%"
-        },
-        {
-          "top": "70%",
-          "left": "90%",
-          "right": "5%",
-          "bottom": "70%"
-        },
-        {
-          "top": "90%",
-          "left": "10%",
-          "right": "5%",
-          "bottom": "90%"
-        },
-        {
-          "top": "90%",
-          "left": "50%",
-          "right": "5%",
-          "bottom": "90%"
-        },
-        {
-          "top": "90%",
-          "left": "90%",
-          "right": "5%",
-          "bottom": "90%"
-        },
-        {
-          "top": "10%",
-          "left": "20%",
-          "right": "50%",
-          "bottom": "30%"
-        },
-        {
-          "top": "45%",
-          "left": "20%",
-          "right": "50%",
-          "bottom": "65%"
-        },
-        {
-          "top": "70%",
-          "left": "20%",
-          "right": "50%",
-          "bottom": "90%"
-        },
-        {
-          "top": "10%",
-          "left": "70%",
-          "right": "10%",
-          "bottom": "90%"
-        },
-        {
-          "top": "10%",
-          "left": "20%",
-          "right": "70%",
-          "bottom": "10%"
+    var startTime = new Date().getTime();
+      // 初始化 G2 图表
+      var chart = new G2.Chart({
+        container: 'container',
+        forceFit: true,
+      });
+      console.log(chart)
+      chart.source([]);
+      chart.coord('rect', {
+        direction: 'TL' // 设置坐标系方向为左上到右下
+      });
+      for (var i = 0; i < 20; i++) {
+        var data = [];
+        for (var j = 1; j <= 100000; j++) {
+          data.push({
+            x: j.toString(),
+            y: Math.floor(Math.random() * 100000) + 1
+          });
         }
-      ],
-      "xAxis": {
-        "type": "value"
-      },
-      "yAxis": {
-        "type": "value"
-      },
-      "series": [
-        {
-          "name": "chart0",
-          "type": "bar",
-          "xAxisIndex": 0,
-          "yAxisIndex": 0,
-          "data": [
-            [
-              17362,
-              24024
-            ],
-            [
-              43476,
-              67018
-            ],
-            [
-              17344,
-              40633
-            ],
-            [
-              16105,
-              66569
-            ],
-            [
-              21431,
-              15252
-            ],
-            [
-              55359,
-              84448
-            ],
-            [
-              87430,
-              69530
-            ],
-            [
-              51725,
-              86412
-            ],
-            [
-              35999,
-              17885
-            ],
-            [
-              12129,
-              32352
-            ]
-          ]
-        },
-        {
-          "name": "chart1",
-          "type": "bar",
-          "xAxisIndex": 1,
-          "yAxisIndex": 1,
-          "data": [
-            [
-              14622,
-              41385
-            ],
-            [
-              85551,
-              31024
-            ],
-            [
-              67541,
-              18302
-            ],
-            [
-              53663,
-              73640
-            ],
-            [
-              65038,
-              3490
-            ],
-            [
-              68679,
-              40700
-            ],
-            [
-              29889,
-              55078
-            ],
-            [
-              76064,
-              99663
-            ],
-            [
-              34311,
-              82515
-            ],
-            [
-              5836,
-              52266
-            ]
-          ]
-        }
-      ]
-    }
+        // 在 G2 图表中添加子图
+        chart.facet('rect', {
+          fields: [],
+          eachView: function (view, facet) {
+            view.source(data);
+            view.axis(false); // 关闭轴线
+            view.interval().position('x*y').color('#1890ff'); // 添加柱状图
+          }
+        });
+      }
+      chart.render(); // 渲染 G2 图表
+      var endTime = new Date().getTime();
+      console.log('渲染时间：' + (endTime - startTime) + 'ms');
   </script>
 </body>
 
