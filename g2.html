@@ -25,43 +25,76 @@
 </head>
 
 <body>
+  <h1 id="count"></h1>
+
   <div id="container"></div>
   <script src="./g2.js">
   </script>
-  <!-- <script src="https://unpkg.com/@antv/g2@next/dist/g2.min.js"></script> -->
   <script>
-    var startTime = new Date().getTime();
-      // 初始化 G2 图表
-      var chart = new G2.Chart({
-        container: 'container',
-        forceFit: true,
-      });
-      console.log(chart)
-      chart.source([]);
-      chart.coord('rect', {
-        direction: 'TL' // 设置坐标系方向为左上到右下
-      });
-      for (var i = 0; i < 20; i++) {
-        var data = [];
-        for (var j = 1; j <= 100000; j++) {
+    const count = 10000;
+    document.getElementById('count').innerHTML = count;
+
+    let data = [];
+    for (var i = 0; i < 5; i++) {
+      for (var j = 0; j < 4; j++) {
+        for (var k = 0; k < count; k++) {
           data.push({
-            x: j.toString(),
-            y: Math.floor(Math.random() * 100000) + 1
+            xaxis: i,
+            x: k,
+            y: Math.floor(Math.random() * 100000) + 1,
+            yaxis: j
           });
         }
-        // 在 G2 图表中添加子图
-        chart.facet('rect', {
-          fields: [],
-          eachView: function (view, facet) {
-            view.source(data);
-            view.axis(false); // 关闭轴线
-            view.interval().position('x*y').color('#1890ff'); // 添加柱状图
-          }
-        });
       }
-      chart.render(); // 渲染 G2 图表
-      var endTime = new Date().getTime();
-      console.log('渲染时间：' + (endTime - startTime) + 'ms');
+    }
+
+    // 初始化 G2 图表
+    var chart = new G2.Chart({
+      container: 'container',
+      theme: 'classic',
+      forceFit: true,
+      width: 1700,
+      // paddingBottom: 50,
+    });
+
+
+    const facetRect = chart
+      .facetRect()
+      .data({
+        value: data,
+      })
+      .encode('x', 'xaxis')
+      .encode('y', 'yaxis')
+      .axis('x', {
+        title: false,
+        line: false,
+        tick: false,
+        label: false,
+      }).axis('y', {
+        title: false,
+        line: false,
+        tick: false,
+        label: false,
+      })
+
+
+    facetRect
+      .interval()
+      .attr('inset', 10)
+      .encode('x', 'x')
+      .encode('y', 'y').axis('x', {
+        title: false,
+        line: false,
+        tick: false,
+        label: false,
+      }).axis('y', {
+        title: false,
+        line: false,
+        tick: false,
+        label: false,
+      })
+
+    chart.render();
   </script>
 </body>
 

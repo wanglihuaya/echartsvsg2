@@ -25,15 +25,19 @@
 </head>
 
 <body>
+  <h1 id="count"></h1>
   <div id="main"></div>
   <script src="./echarts.js">
 
   </script>
   <script>
+    const count = 100000;
+    document.getElementById('count').innerHTML = count;
+
     let data = [];
     for (var i = 0; i < 20; i++) {
       var subArray = [];
-      for (var j = 0; j < 50000; j++) {
+      for (var j = 0; j < count; j++) {
         subArray.push([Math.floor(Math.random() * 100000) + 1, Math.floor(Math.random() * 100000) + 1]);
       }
       data.push(subArray);
@@ -47,27 +51,28 @@
     var option = {
       // 将图表布局设置为5行4列，总共20个网格
       grid: [
-        { top: '10%', left: '10%', right: '5%', bottom: '10%' },
-        { top: '10%', left: '50%', right: '5%', bottom: '10%' },
-        { top: '10%', left: '90%', right: '5%', bottom: '10%' },
-        { top: '30%', left: '10%', right: '5%', bottom: '30%' },
-        { top: '30%', left: '50%', right: '5%', bottom: '30%' },
-        { top: '30%', left: '90%', right: '5%', bottom: '30%' },
-        { top: '50%', left: '10%', right: '5%', bottom: '50%' },
-        { top: '50%', left: '50%', right: '5%', bottom: '50%' },
-        { top: '50%', left: '90%', right: '5%', bottom: '50%' },
-        { top: '70%', left: '10%', right: '5%', bottom: '70%' },
-        { top: '70%', left: '50%', right: '5%', bottom: '70%' },
-        { top: '70%', left: '90%', right: '5%', bottom: '70%' },
-        { top: '90%', left: '10%', right: '5%', bottom: '90%' },
-        { top: '90%', left: '50%', right: '5%', bottom: '90%' },
-        { top: '90%', left: '90%', right: '5%', bottom: '90%' },
-        { top: '10%', left: '20%', right: '50%', bottom: '30%' },
-        { top: '45%', left: '20%', right: '50%', bottom: '65%' },
-        { top: '70%', left: '20%', right: '50%', bottom: '90%' },
-        { top: '10%', left: '70%', right: '10%', bottom: '90%' },
-        { top: '10%', left: '20%', right: '70%', bottom: '10%' }
+        { top: '0%', left: '0%', width: '23%', height: '20%' },
+        { top: '0%', left: '25%', width: '23%', height: '20%' },
+        { top: '0%', left: '50%', width: '23%', height: '20%' },
+        { top: '0%', left: '75%', width: '23%', height: '20%' },
+        { top: '20%', left: '0%', width: '23%', height: '20%' },
+        { top: '20%', left: '25%', width: '23%', height: '20%' },
+        { top: '20%', left: '50%', width: '23%', height: '20%' },
+        { top: '20%', left: '75%', width: '23%', height: '20%' },
+        { top: '40%', left: '0%', width: '23%', height: '20%' },
+        { top: '40%', left: '25%', width: '23%', height: '20%' },
+        { top: '40%', left: '50%', width: '23%', height: '20%' },
+        { top: '40%', left: '75%', width: '23%', height: '20%' },
+        { top: '60%', left: '0%', width: '23%', height: '20%' },
+        { top: '60%', left: '25%', width: '23%', height: '20%' },
+        { top: '60%', left: '50%', width: '23%', height: '20%' },
+        { top: '60%', left: '75%', width: '23%', height: '20%' },
+        { top: '80%', left: '0%', width: '23%', height: '20%' },
+        { top: '80%', left: '25%', width: '23%', height: '20%' },
+        { top: '80%', left: '50%', width: '23%', height: '20%' },
+        { top: '80%', left: '75%', width: '23%', height: '20%' },
       ],
+      tooltip: {},
       xAxis: [
 
       ],
@@ -79,10 +84,12 @@
       option.xAxis.push({
         gridIndex: i,
         type: 'value',
+        show: false,
       });
       option.yAxis.push({
         gridIndex: i,
         type: 'value',
+        show: false,
       });
       option.series.push({
         name: 'chart' + i.toString(),
